@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="fn()">我是按钮</button>
+<button id="primary">我是primary按钮</button>
+<!--<div style="height: 2000px"></div>-->
+<form>
+    <input id="username" placeholder="请输入用户名" type="text">
+    <input id="submit" type="submit" value="提交">
+    <input id="reset" type="reset" value="重置">
+</form>
+<div style="height: 100px;width: 100px;background: aqua"></div>
+</body>
+<script >
+    // 给元素预设当它被xxx行为操作的时候 它将作出一定的回应的操作 我们称为给元素绑定事件
+    // 其中xxx行为 我们称为时间类型
+    // 当前元素我们称为事件源
+    function fn() {
+        console.log("有人点我了");
+    }
+
+    // 方式二
+    // 获取事件源
+    var primary = document.getElementById("primary");
+    // fn的返回值是：undefined
+    primary.onclick=fn;
+
+
+    function resizeHandler() {
+        console.log("窗口的尺寸发生变化了");
+    }
+    window.onresize=resizeHandler;
+
+    //窗口滚动事件
+    window.onscroll =function scrollHandle() {
+        console.log("窗口发生了滚动")
+    }
+
+    var usernameIpt = document.getElementById("username");
+    //聚焦输入
+    usernameIpt.onfocus=function focusHandle() {
+        console.log("你可以输入了");
+    }
+    //失去焦点
+    usernameIpt.onblur=function blurHandle() {
+        console.log("现在失去焦点，你无法输入");
+    }
+    //输入事件
+    usernameIpt.oninput=function inputHandle(){
+        console.log("现在你在输入一些文字");
+    }
+
+    //change事件
+    usernameIpt.onchange=function changeHandle() {
+        console.log("输入框的内容修改完毕");
+    }
+
+    //提交事件
+    var formEl = document.querySelector("form");
+    formEl.onsubmit = function submitHandle() {
+        alert("表单提交了");
+    }
+
+    //重置时间
+    formEl.onreset=function resetHandle() {
+        console.log("表单内容被重置了");
+    }
+
+
+    var divEle = document.querySelector("div");
+    divEle.onmouseenter=function enter() {
+        console.log("鼠标进入了div");
+    }
+    divEle.onmouseleave=function leaveHandle() {
+        console.log("离开了div");
+    }
+    divEle.onmousemove=function moveHandle() {
+        console.log("div里面鼠标移动");
+    }
+    divEle.onmouseover=function overHandle() {
+        console.log("鼠标在div的上方");
+    }
+</script>
+</html>

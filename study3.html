@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>div</div>
+<p>p</p>
+<h1>h1</h1>
+</body>
+<script>
+    var html = document.querySelector("html");
+    html.addEventListener("click",function (e) {
+        if (e.target.tagName === "DIV") {
+            console.log("div");
+        }
+        if (e.target.tagName === "P") {
+            console.log("p");
+        }
+        if (e.target.tagName === "H1") {
+            console.log("h1");
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件传递（冒泡）</title>
+    <style>
+        .outer{
+            height: 500px;
+            width: 500px;
+            background: orange;
+            border: orange solid 1px;
+        }
+        .inner{
+            height: 150px;
+            width: 150px;
+            background: aqua;
+            margin: 150px;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 100px;width: 100px;background: palegreen"></div>
+<div class="outer">
+    <div class="inner"></div>
+</div>
+<ul>
+    <li class="item">01</li>
+    <li class="item">02</li>
+    <li class="item">03</li>
+    <li class="item">04</li>
+    <li class="item">05</li>
+    <li class="item">06</li>
+    <li class="item">07</li>
+    <li class="item">08</li>
+    <li class="item">09</li>
+    <li class="item">10</li>
+</ul>
+</body>
+
+<script>
+    //主流时间绑定/移除的方式
+    //语义化清晰
+    //可以对同一个事件绑定多个事件处理
+    //可以选择性的移除一个事件
+    var div = document.querySelector("div");
+    function clickHandler1() {
+        console.log("click--1");
+    }
+    function clickHandler2() {
+        console.log("click--2");
+    }
+    function clickHandler3() {
+        console.log("click--3");
+    }
+    function clickHandler4() {
+        console.log("click--4");
+    }
+    div.addEventListener("click",clickHandler1);
+    div.addEventListener("click",clickHandler2);
+    div.removeEventListener("click",clickHandler2);
+
+    document.body.addEventListener("click",clickHandler3);
+    var html = document.querySelector("html");
+    html.addEventListener("click",clickHandler2);
+    document.addEventListener("click",clickHandler4);
+
+    var outer = document.querySelector(".outer");
+    var inner = document.querySelector(".inner");
+
+    function outerClickHandler(e) {
+        e.stopPropagation()
+        console.log("点击了out");
+    }
+    function innerClickHandler(e) {
+
+        console.log("点击了inner");
+    }
+    outer.addEventListener("click",outerClickHandler);
+    inner.addEventListener("click",innerClickHandler);
+
+    // var lis = document.querySelectorAll(".item");
+    // for (let i = 0; i < lis.length; i++) {
+    //     lis[i].addEventListener('click',function () {
+    //         console.log("click!!!");
+    //     })
+    // }
+
+    // 利用事件传播机制 实现事件的委托 提升事件绑定的效率
+    // 当你需要给一群元素绑定相同类型时间时，就可以使用（在父级元素上定义一个相同类型的事件）
+    // 在事件处理函数中通过特征判断 执行不同的逻辑 （
+    var ul = document.querySelector("ul");
+    ul.addEventListener("click",function (e) {
+        e.stopPropagation();
+        if (e.target.className==="item") {
+            console.log("item可以点击了"+e.target.innerHTML);
+        }
+    })
+
+
+
+    var li = document.createElement("li");
+    li.innerHTML="11";
+    li.className="item";
+    ul.appendChild(li);
+
+
+</script>
+</html>

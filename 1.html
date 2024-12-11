@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格删除</title>
+    <style>
+        table {
+            border-collapse: collapse; /* 合并边框 */
+            width: 300px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        th, td {
+            border: 1px solid black; /* 为单元格添加边框 */
+            padding: 10px; /* 设置单元格内边距 */
+        }
+
+        th {
+            background-color: #f2f2f2; /* 表头背景颜色 */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* 偶数行背景颜色 */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; /* 奇数行背景颜色 */
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+
+
+
+</table>
+</body>
+
+<script>
+    var dataSource=
+        [
+            {id:1,name:"魏璎珞", subject:"JavaScript",grade:100},
+            {id:2,name:"弘历", subject:"JavaScript",grade:90},
+            {id:3,name:"傅恒", subject:"JavaScript",grade:99},
+            {id:4,name:"明玉", subject:"JavaScript",grade:89}
+        ]
+    ;
+
+    var tbody = document.querySelector("tbody");
+    tbody.addEventListener("click",function (e) {
+        e.stopPropagation();
+        if (e.target.className==="action"){
+            e.target.parentElement.parentElement.remove();
+
+        }
+    })
+    var keys = ['name','subject','grade','action'];
+    for (let i = 0; i < dataSource.length; i++) {
+        var tr = document.createElement("tr");
+        for (let j = 0; j < keys.length; j++) {
+            var td = document.createElement("td");
+            var propName = keys[j];
+            var innerMsg = dataSource[i][propName];
+            td.innerHTML=innerMsg?innerMsg:"<button class='action' id='"+dataSource[i].id+"'>删除</button>";
+            tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+    }
+
+    // var table = document.querySelector("table");
+    // var trTh = document.getElementById("tr-th");
+    // var th = document.createElement("th");
+    //
+    // th.innerHTML="操作";
+    // trTh.appendChild()
+    //
+    //
+    // for (let i = 0; i < tbody.length; i++) {
+    //     // console.log(111)
+    //     var tr = document.createElement("tr");
+    //     tr.id=i+1;
+    //     console.log(tbody[i]);
+    //     var tdName = document.createElement("td");
+    //     tdName.innerHTML=tbody[i].name;
+    //     var tdSub = document.createElement("td");
+    //     tdSub.innerHTML=tbody[i].subject;
+    //     var tdGra = document.createElement("td");
+    //     tdGra.innerHTML=tbody[i].grade;
+    //     tr.appendChild(tdName);
+    //     tr.appendChild(tdSub);
+    //     tr.appendChild(tdGra);
+    //     table.appendChild(tr);
+    // }
+</script>
+</html>

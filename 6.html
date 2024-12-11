@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片切换</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #big-image {
+            width: 400px;
+            height: 300px;
+            border: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .thumbnail.selected {
+            border-color: blue;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<img id="big-image" src="./img/1.jpeg" alt="大图" />
+<div class="thumbnails">
+    <img class="thumbnail" src="./img/1.jpeg" alt="平安喜乐" />
+    <img class="thumbnail" src="./img/2.jpeg" alt="早安" />
+    <img class="thumbnail" src="./img/3.jpeg" alt="财神" />
+</div>
+</body>
+<script>
+    // 获取大图元素和所有小图元素
+    const bigImage = document.getElementById('big-image');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+
+    thumbnails.forEach(thumbnail => {
+        // 给每个小图绑定点击事件
+        thumbnail.addEventListener('click', () => {
+            // 设置大图的 src 为点击的小图的 src
+            bigImage.src = thumbnail.src;
+
+            // 移除其他小图的选中效果
+            thumbnails.forEach(thumb => thumb.classList.remove('selected'));
+
+            // 给当前点击的小图添加选中效果
+            thumbnail.classList.add('selected');
+        });
+    });
+</script>
+</html>
+

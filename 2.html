@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .heart-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heart {
+            font-size: 2rem;
+            cursor: pointer;
+            color: black;
+            transition: color 0.3s;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<div class="heart-container"></div>
+<div class="result"></div>
+
+
+</body>
+<script>
+    // 配置总数和评语
+    const numHearts = 5; // 总共多少颗心
+    const comments = [
+        "很差劲",    // 第 1 颗心对应的评语
+        "还需要努力", // 第 2 颗心对应的评语
+        "一般般",    // 第 3 颗心对应的评语
+        "还不错",    // 第 4 颗心对应的评语
+        "非常棒"     // 第 5 颗心对应的评语
+    ];
+
+    const container = document.querySelector('.heart-container');
+    const resultDiv = document.querySelector('.result');
+
+    // 动态创建心形元素
+    for (let i = 0; i < numHearts; i++) {
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.textContent = '❤'; // 添加心形符号
+        heart.dataset.index = i; // 为每颗心添加索引值
+        container.appendChild(heart);
+
+        // 点击事件
+        heart.addEventListener('click', () => {
+            const index = parseInt(heart.dataset.index);
+
+            // 更新心形颜色
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach((h, idx) => {
+                if (idx <= index) {
+                    h.classList.add('red'); // 变红
+                } else {
+                    h.classList.remove('red'); // 变黑
+                }
+            });
+
+            // 显示评语
+            resultDiv.textContent = comments[index];
+        });
+    }
+</script>
+
+</html>

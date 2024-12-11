@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .input-container {
+            margin: 20px 0;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: blue;
+        }
+
+
+        .input-container {
+            position: relative;
+        }
+
+        input.filled + .placeholder {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="input-container">
+    <input id="text" type="text" placeholder="邮箱/Id/手机号"/>
+</div>
+<div class="input-container">
+    <input id="pwd" type="password" placeholder="密码" />
+</div>
+
+
+</body>
+<script>
+    const inputs = document.querySelectorAll('input');
+    var inputText=document.getElementById("text").placeholder;
+    var inputPwd=document.getElementById("pwd").placeholder;
+    inputs.forEach(input => {
+
+
+        // 获得焦点事件
+        input.addEventListener('focus', () => {
+            input.style.borderColor = 'blue'; // 边框变蓝
+            input.placeholder = ''; // 提示内容消失
+        });
+
+        // 失去焦点事件
+        input.addEventListener('blur', () => {
+            if (!input.value.trim()) {
+                if (input.id === "text")
+                    input.placeholder = inputText;
+                else
+                    input.placeholder = inputPwd;
+            }
+            input.style.borderColor = '#ccc';
+
+        });
+    });
+</script>
+</html>

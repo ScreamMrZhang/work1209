@@ -8,6 +8,11 @@
             margin: 0;
             padding: 0;
         }
+        body{
+            width: 1000px;
+            height: 1000px;
+            background: black;
+        }
     </style>
 </head>
 <body>
@@ -71,12 +76,17 @@
             menu.onclick=function myClick(a){
                 console.log("右键菜单被点击了");
                 //处理关闭菜单
-                if (!a.target === menu) {
-                    menu.remove();
-                }
 
             }
+
         }
+        document.addEventListener("click",function (e) {
+            // console.log("11111");
+            if (e.target.className != "right-key-menu"){
+                menu.remove();
+            }
+        })
+
         console.log("右键菜单");
         menu.style="background:red;z-index:999;position:absolute;left:"+e.x+"px;top:"+e.y+"px;"
         document.body.appendChild(menu);

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f0f0f0; /* 鼠标悬停效果 */
+        }
+    </style>
+</head>
+<body>
+<input type="password" id="password" placeholder="请输入密码" />
+<button id="togglePassword">显示密码</button>
+
+<script>
+    // 获取密码框和按钮
+    const passwordInput = document.getElementById('password');
+    const togglePasswordButton = document.getElementById('togglePassword');
+
+    // 点击按钮切换密码显示状态
+    togglePasswordButton.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text'; // 切换为文本框
+            togglePasswordButton.textContent = '隐藏密码'; // 更新按钮文本
+        } else {
+            passwordInput.type = 'password'; // 切换为密码框
+            togglePasswordButton.textContent = '显示密码'; // 更新按钮文本
+        }
+    });
+</script>
+</body>
+</html>

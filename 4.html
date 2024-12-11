@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 30px;
+            transition: font-size 0.3s;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f0f0f0; /* 鼠标悬停效果 */
+        }
+    </style>
+</head>
+<body>
+<h1 id="headline">出了个大新闻</h1>
+<button id="increase50">变大 50px</button>
+<button id="increase80">变大 80px</button>
+
+
+</body>
+<script>
+    // 获取 DOM 元素
+    const headline = document.getElementById('headline');
+    const increase50Btn = document.getElementById('increase50');
+    const increase80Btn = document.getElementById('increase80');
+
+    // 点击按钮的通用函数
+    const increaseFontSize = (increment) => {
+        // 获取当前字体大小并去掉单位 'px'
+        const currentSize = parseInt(window.getComputedStyle(headline).fontSize, 10);
+        // 增加字体大小
+        headline.style.fontSize = (currentSize + increment) + 'px';
+    };
+
+    // 点击变大 50px 按钮
+    increase50Btn.addEventListener('click', () => increaseFontSize(50));
+
+    // 点击变大 80px 按钮
+    increase80Btn.addEventListener('click', () => increaseFontSize(80));
+</script>
+</html>

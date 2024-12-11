@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱心</title>
+    <symbol style="display: none">
+<!--    <symbol >-->
+        <svg id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>
+    </symbol>
+    <style>
+        .svgStyle{
+            width: 100px;
+            height: 100px;
+            font-size: 100px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <svg data-index="0" style="width: 100px;height: 100px;font-size: 100px"><use xlink:href="#heart"></use></svg>
+        <svg data-index="1" style="width: 100px;height: 100px;font-size: 100px"><use xlink:href="#heart"></use></svg>
+        <svg data-index="2" style="width: 100px;height: 100px;font-size: 100px"><use xlink:href="#heart"></use></svg>
+        <svg data-index="3" style="width: 100px;height: 100px;font-size: 100px"><use xlink:href="#heart"></use></svg>
+        <svg data-index="4" style="width: 100px;height: 100px;font-size: 100px"><use xlink:href="#heart"></use></svg>
+    </div>
+    <div>
+        <div>xxx</div>
+    </div>
+</div>
+</body>
+<script>
+    var hearts = document.querySelectorAll(".container svg");
+    var container = document.querySelector(".container");
+    container.addEventListener("click",function (e) {
+        if (e.target.tagName==="use"){
+            var index = parseInt(e.target.parentNode.dataset.index);
+            console.log(index);
+
+            for (let i = 0; i < hearts.length; i++) {
+                console.log(hearts[i]);
+                hearts[i].style.color=i<=index?"red":"black";
+            }
+        }
+    })
+</script>
+</html>
